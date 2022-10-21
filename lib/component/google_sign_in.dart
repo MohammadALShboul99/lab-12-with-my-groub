@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:semifinal/screens/home.dart';
 import 'package:semifinal/screens/login_screen.dart';
-import 'package:semifinal/screens/screen%201.dart';
-import 'package:semifinal/screens/screen2.dart';
 import 'package:semifinal/screens/sign_up_screen.dart';
 
 class GoogleLogin extends ChangeNotifier {
@@ -13,9 +11,9 @@ class GoogleLogin extends ChangeNotifier {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return const Screenone();
+          return const Home();
         } else {
-          return const Screentwo();
+          return const Login();
         }
       },
     );

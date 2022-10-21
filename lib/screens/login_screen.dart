@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:line_icons/line_icons.dart';
 import 'package:semifinal/component/custom_button.dart';
 import 'package:semifinal/component/google_sign_in.dart';
 import 'package:semifinal/component/rich_text.dart';
 import 'package:semifinal/component/text_field.dart';
-
 import 'package:ionicons/ionicons.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
-import 'package:semifinal/screens/screen2.dart';
 import 'home.dart';
 
 class Login extends StatefulWidget {
@@ -114,14 +111,19 @@ class _LoginState extends State<Login> {
                     UserCredential user =
                         await authin.signInWithEmailAndPassword(
                             email: email.text, password: password.text);
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return Screentwo();
-                      },
-                    ));
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text("Logined in")));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: ((context) => Home())));
                   } catch (e) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text("sorry invalid email or pass")));
+                    if (email.text.isEmpty && password.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content:
+                              Text("Please Enter Your Email and password ")));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("Sorry Invalid Email Or Password")));
+                    }
                   }
                 },
                 text: "Login"),

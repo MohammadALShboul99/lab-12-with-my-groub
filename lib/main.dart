@@ -16,7 +16,7 @@ Future<void> main() async {
     routes: {
       "sign_up": (context) => const SignUp(),
       "login": (context) => const Login(),
-      "forget_password": (context) => const ResetPassword()
+      "forget_password": (context) => const ResetPassword(),
     },
     home: const MyApp(),
   ));
